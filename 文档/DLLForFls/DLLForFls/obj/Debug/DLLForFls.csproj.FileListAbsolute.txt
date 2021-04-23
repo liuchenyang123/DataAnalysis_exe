@@ -1,0 +1,8 @@
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\bin\Debug\DLLForFls.dll
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\bin\Debug\DLLForFls.pdb
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\bin\Debug\Interop.IQOPENLib.dll
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\obj\Debug\Interop.IQOPENLib.dll
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\obj\Debug\DLLForFls.csproj.ResolveComReference.cache
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\obj\Debug\DLLForFls.dll
+d:\documents\visual studio 2017\Projects\DLLForFls\DLLForFls\obj\Debug\DLLForFls.pdb
+D:\Documents\Visual Studio 2017\Projects\DLLForFls\DLLForFls\obj\Debug\DLLForFls.csproj.CoreCompileInputs.cache
