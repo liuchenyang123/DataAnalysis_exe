@@ -19,23 +19,23 @@ namespace RelAnalysis3
         static void Main(string[] args)
         {
             // 测试用例
-            args = new string[15] {
-                @"H:\测试\Fls",
-                "上行",
-                @"H:\测试\上行\Mileage",
-                @"H:\测试\上行\限界文件.txt",
-                "0.68",
-                "2mm",
-                "LimitAnalysis",
-                "1",
-                "0",
-                "2.7",
-                "132616879223158835",
-                "1.6",
-                @"D:\dist",
-                //@"D:\TSDALL\testingTSD\TSD202101\TSD\ScanUI\bin\x86\Debug",
-                "","",
-            };
+            //args = new string[15] {
+            //    @"H:\测试\Fls",
+            //    "上行",
+            //    @"H:\测试\上行\Mileage",
+            //    @"H:\测试\上行\限界文件.txt",
+            //    "0.68",
+            //    "2mm",
+            //    "LimitAnalysis",
+            //    "1",
+            //    "0",
+            //    "2.7",
+            //    "132616879223158835",
+            //    "1.6",
+            //    @"D:\dist",
+            //    //@"D:\TSDALL\testingTSD\TSD202101\TSD\ScanUI\bin\x86\Debug",
+            //    "","",
+            //};
 
             DateTime dateTime = DateTime.Now;
             ///检查输入参数，不足则跳出，并记录到"D://Log.txt"
@@ -87,6 +87,8 @@ namespace RelAnalysis3
                     string path_Progress = Save_path + "\\Message\\";//扫描解析信息数据存储路径
                     string path_limit_jpg = Save_path + "\\Limit\\";   //限界文件保存的路径
 
+
+                    // 创建文件夹
                     CheckDirectory(path_3D);
                     CheckDirectory(path_sPhoto);
                     CheckDirectory(path_Photo);
@@ -1213,7 +1215,7 @@ namespace RelAnalysis3
                         }
                     }
                 }
-
+                //startTime = mileage_all[0].Time;
                 ///开始解析文件
                 if (isLog) Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " 开始解析文件：" + fileName_now);
                 if (space_Analysis.ET_Analysis_Limit(fileName_now, mileage_all, startTime, Tunnel_Radius))

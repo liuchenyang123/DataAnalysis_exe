@@ -109,6 +109,15 @@ namespace RelAnalysis3
             drawUnint.Save_photo(path);
         }
 
+
+        /// <summary>
+        /// 生成限界图函数
+        /// </summary>
+        /// <param name="limitdata"></param>
+        /// <param name="secdata"></param>
+        /// <param name="LFP"></param>
+        /// <param name="path"></param>
+        /// <param name="mark_str"></param>
         public static void DrawSection_limit(List<Faro_point> limitdata, Faro_point[] secdata, List<Faro_point> LFP, string path, string mark_str = "")
         {
             if (secdata.Length == 0 ) return;

@@ -431,6 +431,12 @@ namespace RelAnalysis3
                 ldivide.Add(divideLine);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="readpath"></param>
+        /// <param name="doM"></param>
         public static void ReadDoMessage(string readpath, out List<Do_Message>doM) {
             doM = new List<Do_Message>();
             if (!File.Exists(readpath)) return;

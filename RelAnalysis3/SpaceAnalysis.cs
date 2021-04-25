@@ -643,25 +643,30 @@ namespace RelAnalysis3
                 while (over < numCol / 2)
                 {
                     Thread.Sleep(100); //延时判断所有数据是否都解析完成
-                    //test-测试
-                    Nsleep++;
-                    if (Nsleep == 1000)
-                    {
-                        if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " 程序未完成解析，over is：" + over);
-                    }
-                    else if (Nsleep == 1500)
-                    {
-                        if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " 程序未完成解析，over is：" + over);
-                        break;//解析时间过长自动退出并记录
-                    }
+                    ////test-测试
+                    //Nsleep++;
+                    //if (Nsleep == 1000)
+                    //{
+                    //    if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " 程序未完成解析，over is：" + over);
+                    //}
+                    //else if (Nsleep == 1500)
+                    //{
+                    //    if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " 程序未完成解析，over is：" + over);
+                    //    break;//解析时间过长自动退出并记录
+                    //}
                 }
 
 
+                // if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " StartLoad：" + Fls_path);
+
 #if true
+                if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +  Fls_path+ " 开始生成限界图" );
+
                 for (int i = 0; i < numCol / 2; i++)
                 {
                     if (limit_quan[i].Count != 0)
                     {
+                        List<Faro_point> lp = new List<Faro_point>();
                         string log_path = Write_jpg_log;
                         if (limit_quan[i].First().tag == 0)
                         {
@@ -669,7 +674,11 @@ namespace RelAnalysis3
                             {
                                 // 侵界直接出图   
                                 string jpg_path = Write_jpgPath + i + "+" + ap[i][0].Y + ".jpg";
-                                SectionAnalysis.DrawSection_limit(LimitData_arr[i], ap[i], limit_quan[i], jpg_path, Path.GetFileNameWithoutExtension(jpg_path));
+                             
+                                foreach (var v in ap[i]) {
+                                    if (v.tag != 1) lp.Add(v);
+                                }
+                                SectionAnalysis.DrawSection(LimitData_arr[i], lp, limit_quan[i], jpg_path, Path.GetFileNameWithoutExtension(jpg_path));
                                 // 将每一环的信息写成日志记录
                                 if (log_path != "") Text_IO.WriteLineToTxt(log_path, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + " 当前里程:" + ap[i][0].Y + "当前里程有侵界");
                                 km = ap[i][0].Y;
@@ -682,14 +691,19 @@ namespace RelAnalysis3
                             // 按照一定的里程出图  500圈
                             if ((i + 1) % 500 == 0)
                             {
+                                foreach (var v in ap[i])
+                                {
+                                    if (v.tag != 1) lp.Add(v);
+                                }
                                 string jpg_path = Write_jpgPath + i + "+" + ap[i][0].Y + ".jpg";
-                                SectionAnalysis.DrawSection_limit(LimitData_arr[i], ap[i], limit_quan[i], jpg_path, Path.GetFileNameWithoutExtension(jpg_path));
+                                SectionAnalysis.DrawSection(LimitData_arr[i], lp, limit_quan[i], jpg_path, Path.GetFileNameWithoutExtension(jpg_path));
                             }
                         }
                     }
 
 
                 }
+                if (writeTimePath != "") Text_IO.WriteLineToTxt(writeTimePath, DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + Fls_path + " 结束生成限界图");
 #endif
                 return true;
             }
@@ -1019,8 +1033,11 @@ namespace RelAnalysis3
 
                 //Get_Limit(GLimitData, lp, "D://Limit//" + round + ".jpg", out List<Faro_point> lfp);
 
-               
-                LimitCalculation(lp, out AllMark , out LimitData);
+                //if ((round + 1) % 500 == 0)
+                //{
+                   
+                //}
+                 LimitCalculation(lp, out AllMark, out LimitData);
 
                 return a_p;
             }
